@@ -23,10 +23,10 @@ if($count==1){
 }
 echo'<html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="semantic.min.css">
-		<link rel="stylesheet" type="text/css" href="semantic.css">
-		<link rel="stylesheet" type="text/css" href="semantic.min.js">
-		<link rel="stylesheet" type="text/css" href="semantic.js">
+		<link rel="stylesheet" type="text/css" href="/ApplicationTracker/css/semantic.min.css">
+		<link rel="stylesheet" type="text/css" href="/ApplicationTracker/css/semantic.css">
+		<link rel="stylesheet" type="text/css" href="/ApplicationTracker/js/semantic.min.js">
+		<link rel="stylesheet" type="text/css" href="/ApplicationTracker/js/semantic.js">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<meta charset="utf-8">
 	</head>
@@ -36,7 +36,7 @@ echo'<html>
 		    	<a class="active item">
 		      		Home
 		    	</a>
-		    	<a class=" right aligned item" href="/ApplicationTracker/logout.php">
+		    	<a class=" right aligned item" href="/ApplicationTracker/src/logout.php">
 		      		Logout
 		    	</a>
 	  		</div>
@@ -48,7 +48,7 @@ echo'<html>
 				<div class="ui segment">
 					<div class="ui small image" style="display:block;">
 	  					<svg width="150" height="200">
-	    					<image xlink:href="14.jpg" x="0" y="0" width="100%" height="100%"></image>
+	    					<image xlink:href="../../img/user.jpg" x="0" y="0" width="100%" height="100%"></image>
 	  					</svg>
 	  					<br>
 	  					<div>
@@ -57,17 +57,17 @@ echo'<html>
 					</div>
 				</div>
 				<div class="ui vertical steps" style="display:block;">
-					<a href="/ApplicationTracker/show_stat_stud.php"><div class="ui step">
+					<a href="/ApplicationTracker/src/status/show_stat_stud.php"><div class="ui step">
 						Leave Status
 					</div></a>
-					<a href="/ApplicationTracker/leave_stud.php"><div class="ui active step">
+					<a href="/ApplicationTracker/src/leave/leave_stud.php"><div class="ui active step">
 						Create Leave
 					</div></a>
 				</div>
 			</div>
 			<div class="eight wide column ui padded segment">
 			<div class="column">
-	<form class="ui form" action="/ApplicationTracker/create_app.php" method="post">
+	<form class="ui form" action="/ApplicationTracker/src/create_app.php" method="post">
 	  <h4 class="ui dividing header">Leave Application</h4>
 	  <br>
 	  <div class="field">

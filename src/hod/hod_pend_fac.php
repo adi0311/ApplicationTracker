@@ -26,10 +26,10 @@
     }
     echo'<html>
         <head>
-            <link rel="stylesheet" type="text/css" href="semantic.min.css">
-            <link rel="stylesheet" type="text/css" href="semantic.css">
-            <link rel="stylesheet" type="text/css" href="semantic.min.js">
-            <link rel="stylesheet" type="text/css" href="semantic.js">
+            <link rel="stylesheet" type="text/css" href="/ApplicationTracker/css/semantic.min.css">
+            <link rel="stylesheet" type="text/css" href="/ApplicationTracker/css/semantic.css">
+            <link rel="stylesheet" type="text/css" href="/ApplicationTracker/js/semantic.min.js">
+            <link rel="stylesheet" type="text/css" href="/ApplicationTracker/js/semantic.js">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
             <meta charset="utf-8">
         </head>
@@ -39,7 +39,7 @@
                     <a class="active item">
                         Home
                     </a>
-                    <a class=" right aligned item" href="/ApplicationTracker/logout.php">
+                    <a class=" right aligned item" href="/ApplicationTracker/src/logout.php">
                         Logout
                     </a>
                 </div>
@@ -51,7 +51,7 @@
                     <div class="ui segment">
                         <div class="ui small image" style="display:block;">
                             <svg width="150" height="200">
-                                <image xlink:href="14.jpg" x="0" y="0" width="100%" height="100%"></image>
+                                <image xlink:href="../../img/user.jpg" x="0" y="0" width="100%" height="100%"></image>
                             </svg>
                             <br>
                             <div>
@@ -60,10 +60,10 @@
                         </div>
                     </div>
                     <div class="ui vertical steps" style="display:block;">
-                        <a href="/ApplicationTracker/show_stat_fac.php"><div class="ui step">
+                        <a href="/ApplicationTracker/src/status/show_stat_fac.php"><div class="ui step">
                             Leave Status
                         </div></a>
-                        <a href="/ApplicationTracker/leave_fac.php"><div class="ui step">
+                        <a href="/ApplicationTracker/src/leave/leave_fac.php"><div class="ui step">
                             Create Leave
                         </div></a>';
     $qry2 = "SELECT name FROM department WHERE hod_id = '$user_id'";
@@ -72,13 +72,13 @@
         //Check whether the query was successful or not
     $count2 = mysqli_num_rows($result2);
     if($count2==1){
-        echo'<a href="/ApplicationTracker/hod_pend_stud.php"><div class="ui step">
+        echo'<a href="/ApplicationTracker/src/hod/hod_pend_stud.php"><div class="ui step">
             Pending Leave Student
         </div></a>
-        <a href="/ApplicationTracker/hod_pend_fac.php"><div class="ui active step">
+        <a href="/ApplicationTracker/src/hod/hod_pend_fac.php"><div class="ui active step">
             Pending Leave Faculty
         </div></a>
-        <a href="/ApplicationTracker/hod_approv.php"><div class="ui step">
+        <a href="/ApplicationTracker/src/hod/hod_approv.php"><div class="ui step">
             Approved/Rejected Leaves
         </div></a>';
     }
@@ -94,7 +94,7 @@
     if($result1){
         $init=0;
          while($info=mysqli_fetch_array($result1)){
-            echo '<tr class="clickable-row" data-href="/ApplicationTracker/hod_app_fac.php?faculty_id='.$info['faculty_id'].'&strdate='.$info['strdate'].'">
+            echo '<tr class="clickable-row" data-href="/ApplicationTracker/src/hod/hod_app_fac.php?faculty_id='.$info['faculty_id'].'&strdate='.$info['strdate'].'">
                       <td>'.$info['faculty_id'].'</td>
                       <td>'.$info['strdate'].'</td>
                       <td>'.$info['purpose'].'</td>

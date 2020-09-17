@@ -6,10 +6,10 @@
 <html>
 <head>
 	<title>Login page</title>
-    <link rel="stylesheet" type="text/css" href="/ApplicationTracker/semantic.min.css">
-    <link rel="stylesheet" type="text/css" href="semantic.css">
-    <link rel="stylesheet" type="text/css" href="semantic.min.js">
-    <link rel="stylesheet" type="text/css" href="semantic.js">
+    <link rel="stylesheet" type="text/css" href="/ApplicationTracker/css/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="/ApplicationTracker/css/semantic.css">
+    <link rel="stylesheet" type="text/css" href="/ApplicationTracker/js/semantic.min.js">
+    <link rel="stylesheet" type="text/css" href="/ApplicationTracker/js/semantic.js">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!--link rel="stylesheet" href="style.css"-->
     <style type="text/css">
@@ -36,7 +36,7 @@
                     Log-in to your account
                 </div>
             </h2>
-            <form class="ui large form" name="LoginForm" method="post" action="login_check.php">
+            <form class="ui large form" name="LoginForm" method="post" action="/ApplicationTracker/src/login_check.php">
                 <div class="ui stacked segment">
                     <div class="field">
                         <div class="ui left icon input">
@@ -54,7 +54,7 @@
                 </div>
             </form>
             <!-- <div class="ui message">
-                New to us? <a href="/ApplicationTracker/signup.php">Sign Up</a>
+                New to us? <a href="/ApplicationTracker/src/signup.php">Sign Up</a>
             </div> -->
         </div>
     </div>

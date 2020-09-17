@@ -1,7 +1,6 @@
 <?php
     session_start();
-    if(isset($_SESSION['IS_AUTHENTICATED']) && $_SESSION['IS_AUTHENTICATED'] == 1)
-    {
+    if(isset($_SESSION['IS_AUTHENTICATED']) && $_SESSION['IS_AUTHENTICATED'] == 1){
 
         $link = mysqli_connect('localhost', 'root', '');
         if(!$link){
@@ -14,25 +13,35 @@
 
         $user_id = $_SESSION['USER_ID'];
 
-        $qry = "SELECT name FROM faculty WHERE faculty_id = '$user_id'";
+        $qry1 = "SELECT name FROM student WHERE roll_no = $user_id";
+        $qry2 = "SELECT name FROM faculty WHERE faculty_id = $user_id";
             //Execute query
-        $result = mysqli_query($link,$qry);
+        $result1 = mysqli_query($link,$qry1);
+        $result2 = mysqli_query($link,$qry2);
             //Check whether the query was successful or not
-        $count = mysqli_num_rows($result);
+        $count1 = mysqli_num_rows($result1);
+        $count2 = mysqli_num_rows($result2);
 
-        if($count==1){
-            $info=mysqli_fetch_array($result);
+        if($count1==1){
+            $info=mysqli_fetch_array($result1);
             $name=$info["name"];
-            $query = "Select strdate,endate,type,purpose,status,result From application_faculty Where faculty_id='$user_id'";
+            $query = "Select strdate,endate,type,purpose,status,result From application_student Where roll_no='$user_id'";
+            $result = mysqli_query($link,$query);
+        }
+        elseif($count2==1){
+            $info=mysqli_fetch_array($result2);
+            $name=$info["name"];
+            $query = "Select strdate,endate,type,purpose,status,result From application_student Where faculty_id='$user_id'";
             $result = mysqli_query($link,$query);
         }
 
+
         echo'<html>
             <head>
-                <link rel="stylesheet" type="text/css" href="semantic.min.css">
-                <link rel="stylesheet" type="text/css" href="semantic.css">
-                <link rel="stylesheet" type="text/css" href="semantic.min.js">
-                <link rel="stylesheet" type="text/css" href="semantic.js">
+            <link rel="stylesheet" type="text/css" href="/ApplicationTracker/css/semantic.min.css">
+            <link rel="stylesheet" type="text/css" href="/ApplicationTracker/css/semantic.css">
+            <link rel="stylesheet" type="text/css" href="/ApplicationTracker/js/semantic.min.js">
+            <link rel="stylesheet" type="text/css" href="/ApplicationTracker/js/semantic.js">
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
                 <meta charset="utf-8">
             </head>
@@ -42,7 +51,7 @@
                         <a class="active item">
                             Home
                         </a>
-                        <a class=" right aligned item" href="/ApplicationTracker/logout.php">
+                        <a class=" right aligned item" href="/ApplicationTracker/src/logout.php">
                             Logout
                         </a>
                     </div>
@@ -54,7 +63,7 @@
                         <div class="ui segment">
                             <div class="ui small image" style="display:block;">
                                 <svg width="150" height="200">
-                                    <image xlink:href="14.jpg" x="0" y="0" width="100%" height="100%"></image>
+                                    <image xlink:href="../../img/user.jpg" x="0" y="0" width="100%" height="100%"></image>
                                 </svg>
                                 <br>
                                 <div>
@@ -63,29 +72,13 @@
                             </div>
                         </div>
                         <div class="ui vertical steps" style="display:block;">
-                            <a href="/ApplicationTracker/show_stat_fac.php"><div class="ui active step">
+                            <a href="/ApplicationTracker/src/status/show_stat.php"><div class="ui active step">
                                 Leave Status
                             </div></a>
-                            <a href="/ApplicationTracker/leave_fac.php"><div class="ui step">
+                            <a href="/ApplicationTracker/src/leave/leave.php"><div class="ui step">
                                 Create Leave
-                            </div></a>';
-        $qry1 = "SELECT name FROM department WHERE hod_id = '$user_id'";
-            //Execute query
-        $result1 = mysqli_query($link,$qry1);
-            //Check whether the query was successful or not
-        $count1 = mysqli_num_rows($result1);
-        if($count1==1){
-                            echo'<a href="/ApplicationTracker/hod_pend_stud.php"><div class="ui step">
-                                Pending Leave Student
                             </div></a>
-                            <a href="/ApplicationTracker/hod_pend_fac.php"><div class="ui step">
-                                Pending Leave Faculty
-                            </div></a>
-                            <a href="/ApplicationTracker/hod_approv.php"><div class="ui step">
-                                Approved/Rejected Leaves
-                            </div></a>';
-        }
-        echo	'</div>
+                        </div>
                     </div>
                     <div class="ui padded segment eight wide column">
                     <div class="column">
@@ -130,5 +123,5 @@
 
 
 
-     }
+    }
  ?>

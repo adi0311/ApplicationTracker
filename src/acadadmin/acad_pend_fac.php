@@ -12,16 +12,16 @@ die("Unable to select database");
 }
 
 
-$qry = "SELECT roll_no,strdate,purpose,type from application_student where status='Acad' and result='pending'";   
+$qry = "SELECT faculty_id,strdate,purpose,type from application_faculty where status='Acad' and result='pending'";   
 $result = mysqli_query($link,$qry); 
 	//Check whether the query was successful or not
 
 echo'<html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="/ApplicationTracker/semantic.min.css">
-		<link rel="stylesheet" type="text/css" href="semantic.css">
-		<link rel="stylesheet" type="text/css" href="semantic.min.js">
-		<link rel="stylesheet" type="text/css" href="semantic.js">
+		<link rel="stylesheet" type="text/css" href="/ApplicationTracker/css/semantic.min.css">
+		<link rel="stylesheet" type="text/css" href="/ApplicationTracker/css/semantic.css">
+		<link rel="stylesheet" type="text/css" href="/ApplicationTracker/js/semantic.min.js">
+		<link rel="stylesheet" type="text/css" href="/ApplicationTracker/js/semantic.js">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<meta charset="utf-8">
 	</head>
@@ -31,7 +31,7 @@ echo'<html>
 		    	<a class="active item">
 		      		Home
 		    	</a>
-		    	<a class=" right aligned item" href="/ApplicationTracker/logout.php">
+		    	<a class=" right aligned item" href="/ApplicationTracker/src/logout.php">
 		      		Logout
 		    	</a>
 	  		</div>
@@ -43,7 +43,7 @@ echo'<html>
 				<div class="ui segment">
 					<div class="ui small image" style="display:block;">
 	  					<svg width="150" height="200">
-	    					<image xlink:href="14.jpg" x="0" y="0" width="100%" height="100%"></image>
+	    					<image xlink:href="../../img/user.jpg" x="0" y="0" width="100%" height="100%"></image>
 	  					</svg>
 	  					<br>
 	  					<div>
@@ -52,13 +52,13 @@ echo'<html>
 					</div>
 				</div>
 				<div class="ui vertical steps" style="display:block;">
-					<a href="/ApplicationTracker/acad_pend_stud.php"><div class="ui active step">
+					<a href="/ApplicationTracker/src/acadadmin/acad_pend_stud.php"><div class="ui step">
 						Pending Leave Student
 					</div></a>
-					<a href="/ApplicationTracker/acad_pend_fac.php"><div class="ui step">
+					<a href="/ApplicationTracker/src/acadadmin/acad_pend_fac.php"><div class="ui active step">
 						Pending Leave Faculty
 					</div></a>
-					<a href="/ApplicationTracker/acad_approv.php"><div class="ui step">
+					<a href="/ApplicationTracker/src/acadadmin/acad_approv.php"><div class="ui step">
 						Approved/Rejected Leaves
 					</div></a>
 				</div>
@@ -66,15 +66,15 @@ echo'<html>
 			<div class="ui padded segment eight wide column">
 			<div class="column">
 			<div class="ui dividing header">
-				Pending Leave of Students
+				Status of the leave
 			</div>
 			<br>
 	<table class="ui unstackable table"><thead><th>Roll no.</th><th>Purpose</th><th>Type</th></thead><tbody>';
  if($result){
  	$init=0;
 	 while($info=mysqli_fetch_array($result)){
-	 	echo '<tr class="clickable-row" data-href="/ApplicationTracker/acad_application.php?roll_no='.$info['roll_no'].'&strdate='.$info['strdate'].'">
-	 			  <td>'.$info['roll_no'].'</td>
+	 	echo '<tr class="clickable-row" data-href="/ApplicationTracker/src/acadadmin/acad_app_fac.php?faculty_id='.$info['faculty_id'].'&strdate='.$info['strdate'].'">
+	 			  <td>'.$info['faculty_id'].'</td>
 	 			  <td>'.$info['purpose'].'</td>
 	 			  <td>'.$info['type'].'</td></tr></a>';
 	 			  $init += 1;

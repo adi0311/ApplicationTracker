@@ -20,7 +20,7 @@
                 session_start();
                 $_SESSION['IS_AUTHENTICATED'] = 1;
                 $_SESSION['USER_ID'] = $login;
-                header('location:acad_pend_stud.php?');
+                header('location:./acadadmin/acad_pend_stud.php?');
                 $count=1;
             }
             else{
@@ -38,13 +38,13 @@
                     session_start();
                     $_SESSION['IS_AUTHENTICATED'] = 1;
                     $_SESSION['USER_ID'] = $login;
-                    header('location:show_stat_stud.php?');
+                    header('location:./status/show_stat_stud.php?');
                 }
                 else if($count2==1){
                     session_start();
                     $_SESSION['IS_AUTHENTICATED'] = 1;
                     $_SESSION['USER_ID'] = $login;
-                    header('location:show_stat_fac.php?');
+                    header('location:./status/show_stat_fac.php?');
                 }
                 else{
                     //Login failed

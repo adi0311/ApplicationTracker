@@ -1,7 +1,8 @@
 <?php
 session_start(); 
 if(isset($_SESSION['IS_AUTHENTICATED']) && $_SESSION['IS_AUTHENTICATED'] == 1){ 
-$link = mysqli_connect('localhost', 'root', ''); 
+
+$link = mysqli_connect('localhost', 'root', '');  
 if(!$link){ 
 die('Failed to connect to server: ' . mysqli_error($link)); 
 }
@@ -9,31 +10,21 @@ $db = mysqli_select_db($link,'file tracking');
 if(!$db){ 
 die("Unable to select database"); 
 }
-$user_id = $_SESSION['USER_ID']; 
-
-$roll_no=$_GET['roll_no'];
+$faculty_id=$_GET['faculty_id'];
 $strdate=$_GET['strdate'];
 
-$qry1 = "SELECT roll_no,strdate,endate,purpose,type from application_student where roll_no='$roll_no' and strdate='$strdate'";   
+$qry1 = "SELECT faculty_id,strdate,endate,purpose,type from application_faculty where faculty_id='$faculty_id' and strdate='$strdate'";   
 $result1 = mysqli_query($link,$qry1);
-$qry2 = "SELECT name from student where roll_no='$roll_no'";
+$qry2 = "SELECT name from faculty where faculty_id='$faculty_id'";
 $result2 = mysqli_query($link, $qry2); 
 $change = -1;
-	//Execute query 
-$result = mysqli_query($link,$qry);  
 	//Check whether the query was successful or not
-$count = mysqli_num_rows($result);
-
-if($count==1){
-	$info=mysqli_fetch_array($result);
-	$name=$info["name"];
-}
 echo'<html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="semantic.min.css">
-		<link rel="stylesheet" type="text/css" href="semantic.css">
-		<link rel="stylesheet" type="text/css" href="semantic.min.js">
-		<link rel="stylesheet" type="text/css" href="semantic.js">
+		<link rel="stylesheet" type="text/css" href="/ApplicationTracker/css/semantic.min.css">
+		<link rel="stylesheet" type="text/css" href="/ApplicationTracker/css/semantic.css">
+		<link rel="stylesheet" type="text/css" href="/ApplicationTracker/js/semantic.min.js">
+		<link rel="stylesheet" type="text/css" href="/ApplicationTracker/js/semantic.js">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<meta charset="utf-8">
 	</head>
@@ -43,7 +34,7 @@ echo'<html>
 		    	<a class="active item">
 		      		Home
 		    	</a>
-		    	<a class=" right aligned item" href="/ApplicationTracker/logout.php">
+		    	<a class=" right aligned item" href="/ApplicationTracker/src/logout.php">
 		      		Logout
 		    	</a>
 	  		</div>
@@ -55,59 +46,42 @@ echo'<html>
 				<div class="ui segment">
 					<div class="ui small image" style="display:block;">
 	  					<svg width="150" height="200">
-	    					<image xlink:href="14.jpg" x="0" y="0" width="100%" height="100%"></image>
+	    					<image xlink:href="../../img/user.jpg" x="0" y="0" width="100%" height="100%"></image>
 	  					</svg>
 	  					<br>
 	  					<div>
-	  						<h4>'.$name.'</h4>
+	  						<h4>Academic</h4>
 	  					</div>
 					</div>
 				</div>
 				<div class="ui vertical steps" style="display:block;">
-					<a href="/ApplicationTracker/show_stat_fac.php"><div class="ui step">
-						Leave Status
-					</div></a>
-					<a href="/ApplicationTracker/leave_fac.php"><div class="ui step">
-						Create Leave
-					</div></a>';
-$qry2 = "SELECT name FROM department WHERE hod_id = '$user_id'";
-	//Execute query 
-$result2 = mysqli_query($link,$qry2);  
-	//Check whether the query was successful or not
-$count2 = mysqli_num_rows($result2);
-if($count2==1){
-					echo'<a href="/ApplicationTracker/hod_pend_stud.php"><div class="ui active step">
+					<a href="/ApplicationTracker/src/acadadmin/acad_pend_stud.php"><div class="ui step">
 						Pending Leave Student
 					</div></a>
-					<a href="/ApplicationTracker/hod_pend_fac.php"><div class="ui step">
+					<a href="/ApplicationTracker/src/acadadmin/acad_pend_fac.php"><div class="ui active step">
 						Pending Leave Faculty
 					</div></a>
-					<a href="/ApplicationTracker/hod_approv.php"><div class="ui step">
+					<a href="/ApplicationTracker/src/acadadmin/acad_approv.php"><div class="ui step">
 						Approved/Rejected Leaves
-					</div></a>';
-}
-echo '</div>
+					</div></a>
+				</div>
 			</div>
 			<div class="ui padded segment eight wide column">
 			<div class="column">
-			<div class="ui dividing header">
-				Pending Leave of Student
-			</div>
-			<br>
-			<table class="ui unstackable table"><thead><th>Roll no.</th><th>Start Date</th><th>Purpose</th><th>Type</th></thead><tbody>';
- if($result1 and $result2){
+			<div class="ui horizontal divider header">Status of Leave</div><br><table class="ui definition table">
+			<tbody>';
+	 if($result1 and $result2){
 	 	$info=mysqli_fetch_array($result1);
 	 	$info2 = mysqli_fetch_array($result2);
 	 	$endate=$info['endate'];
 	 	$start=date_create($info['strdate']);
 	 	$end=date_create($info['endate']);
-	 	$roll=$info['roll_no'];
-	 	$type=$info['type'];
+	 	$roll=$info['faculty_id'];
 	 	echo '<tr><td>Name</td><td>'.$info2['name']."</td></tr>";
-	 	echo '<tr><td>Roll No.</td><td>'.$info['roll_no']."</td></tr>";
+	 	echo '<tr><td>Roll No.</td><td>'.$roll."</td></tr>";
 	 	echo '<tr><td>Start Date</td><td>'.$info['strdate']."</td></tr>";
 	 	echo '<tr><td>End Date</td><td>'.$info['endate']."</td></tr>";
-	 	echo '<tr><td>Type of Leave</td><td>'.$type."</td></tr>";
+	 	echo '<tr><td>Type of Leave</td><td>'.$info['type']."</td></tr>";
 	 	echo '<tr><td>Purpose</td><td>'.$info['purpose']."</td></tr>";
 		}
 	?>
@@ -133,17 +107,20 @@ echo '</div>
 	<script>
 		function execute(value)
 		{
-			var r = <?php echo $roll; ?>;
+			var r = <?php echo '"'.$roll.'"'; ?>;
 			var date = <?php echo '"'.$strdate.'"'; ?>;
 			var edate = <?php echo '"'.$endate.'"'; ?>;
-			$.post('leave_data.php', {value:value, roll:r, date:date, edate:edate}, 
+			$.post('./src/leave/leave_data_fac.php', {value:value, roll:r, date:date, edate:edate},
 				function(data){
 				$(".result").html(data);
 			});
 		}
 	</script>
-<?php echo'</body>
+
+	<?php echo'</body>
 </html>';
  
+ 
+
  }
  ?>
