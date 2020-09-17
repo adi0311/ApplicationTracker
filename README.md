@@ -1,17 +1,8 @@
-<<<<<<< HEAD
-# CSS  Distribution
-
-This repository is automatically synced with the main [Semantic UI](https://github.com/Semantic-Org/Semantic-UI) repository to provide lightweight CSS only version of Semantic UI.
-
-This package **does not support theming** and includes generated CSS files of the default theme only.
-
-You can view more on Semantic UI at [LearnSemantic.com](http://www.learnsemantic.com) and [Semantic-UI.com](http://www.semantic-ui.com)
-=======
-## ApplicationTracker
+# ApplicationTracker
 
 A PHP application where Student and Faculty can apply for leave. Once applied they can track the status of their leave application. First the application would be received by Acad person who either accepts or rejects the application. Once accepted by the Acad person, application is forwarded to the HOD who finally accepts or rejects the application.
 
-# System Requirements
+## System Requirements
 
 <ul>
   <li>PHP</li>
@@ -19,7 +10,7 @@ A PHP application where Student and Faculty can apply for leave. Once applied th
   <li>Git</li>
 </ul>
 
-# Get Started
+## Get Started
 
 <ol>
   <li>Install PHP, Xampp and Git on your system.</li>
@@ -39,4 +30,29 @@ A PHP application where Student and Faculty can apply for leave. Once applied th
   <li>Application is now ready to go!</li>
  </ol>
  
->>>>>>> 5651dac1ac692bea12946514539727e00f53717c
+ ## ScreenShots
+ 
+ ### 1. Login Page
+ 
+ ![Login](https://github.com/adi0311/ApplicationTracker/blob/master/screenshots/Login.png)
+ 
+ ### 2. Fresh Application Page
+ ![Application](https://github.com/adi0311/ApplicationTracker/blob/master/screenshots/Application_View.png)
+ 
+ ### 3. Application Status Page
+ ![Status Page](https://github.com/adi0311/ApplicationTracker/blob/master/screenshots/Status_Student.png)
+ 
+ ### 4. HOD Leave Status Page
+ ![HOD Status Page](https://github.com/adi0311/ApplicationTracker/blob/master/screenshots/Hod_Status_of_leave.png)
+ 
+ ### 5. HOD Accepted and Rejected Leaves Page
+ ![HOD Accepted Rejected](https://github.com/adi0311/ApplicationTracker/blob/master/screenshots/Hod_Acc_Rej_View.png)
+ 
+ ### 6. Acad Admin Pending Leaves Page
+ ![Acad Check](https://github.com/adi0311/ApplicationTracker/blob/master/screenshots/Academic_Pending_Check.png)
+ 
+ ### 7. Acad Admin Accepted and Rejected Leaves Page
+ ![Acad Accepted Rejected](https://github.com/adi0311/ApplicationTracker/blob/master/screenshots/Academic_Acc_Rej_View.png)
+ 
+ ### 8. Acad Admin Check for Eligibility of Leave Page
+ ![Eligibility Check](https://github.com/adi0311/ApplicationTracker/blob/master/screenshots/Acadmic_Check_Eligibility.png)
